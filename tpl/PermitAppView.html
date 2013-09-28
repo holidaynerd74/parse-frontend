@@ -1,0 +1,136 @@
+		<style type="text/css">
+        #mapCanvas{
+            width: 480px;
+            height: 300px;
+        }
+    </style>
+        <div id = "mainContent">
+        <div class = "row">
+        <div class = "span5" id = "addressInfo">
+        
+        <h3>Enter Project Information</h3>
+        <input type="text" name="permiteeName" id="name" value="<%= name %>" placeholder="Permitee Name" /><input type="text" name="permiteeId" id="permiteeId" value="<%= permiteeId %>" placeholder="Permitee ID Number"/ ><br>
+        <input type="text" name="fromDate" id="fromDate" value="<%= fromDate %>" placeholder="Project Start Date"/> <input type="text" name="toDate" id="toDate" value="<%= toDate %>" placeholder="Finish Date"/><br>
+        <input type="text" name="houseNumber" value="<%= houseNumber %>" placeholder="Building Number" /> <input type="text" name = "street" value="<%= street %>"  placeholder="Street Name" /><br>
+        <input type="text" name="crossStreet" value="<%= crossStreet %>" placeholder="Cross Street" /> <input type="text" name="betweenTwo" id="crossStreetTwo" placeholder="Cross Street 2" value="<%= crossStreetTwo %>"/><br>
+        <select name="borough" id="borough" value="<%= borough %>">
+        <option <%= borough == "Bronx"?'selected':'' %>>Bronx</option>
+        <option <%= borough == "Brooklyn"?'selected':'' %>>Brooklyn</option>
+        <option <%= borough == "Manhattan"?'selected':'' %>>Manhattan</option>
+        <option <%= borough == "Queens"?'selected':'' %>>Queens</option>
+        <option <%= borough == "Staten Island"?'selected':'' %>>Staten Island</option>
+        </select>
+        <input id="todaysDate" type = "text" disabled><br>
+        <textarea name="description" rows="4" placeholder="Project Description"><%= description %></textarea>
+        <textarea name="stipulations" rows="4" placeholder="Stipulation Requests"><%= stipulations %></textarea>
+        </div>
+            <div class = "span5" id = "mapArea"><a id="findAddress" style = "color:purple;" onclick="showMap(); codeAddress();"><h3>Map It!<br /></h3></a>
+            <div id="mapCanvas"></div>
+            </div>
+        </div><!-- End 1st Row -->
+        <div class = "row">
+            <div class = "span5" id="permits">
+            <select name="workingOn" id="workingOn" value="<%= workingOn %>">
+            <option <%= workingOn == "sidewalk"?'selected':'' %>>Sidewalk</option>
+            <option <%= workingOn == "street"?'selected':'' %>>Street</option>
+            <option <%= borough == "both"?'selected':'' %>>Both</option>
+            </select>
+            <select name="streetWork" id="streetWork" value="<%= roadType %>">
+            <option value = "asphalt">Asphalt</option>
+            <option value = "choose">Choose</option>
+            <option value = "choose">Choose</option>
+            <option value = "choose">Choose</option>
+            </select>
+            <select name="sidewalkWork" id="sidewalkWork" value="<%= sidewalkType %>">
+            <option value = "choose">Choose Sidewalk Type</option>
+            <option value = "asphalt">Asphalt</option>
+            <option value = "choose">Choose</option>
+            <option value = "choose">Choose</option>
+            <option value = "choose">Choose</option>
+            </select>
+            <h3>Choose Permits</h3>
+            <select name="permitType" id="permitType">
+            <option value="choose">Choose Your Permit Type</option>
+            <option value="street">Street Opening Permits</option>
+            <option value="building">Building Operation Permits</option>
+            <option value="sidewalk">Sidewalk Construction Permits</option>
+            </select>
+            <div id = "street2">
+            <h3>Street Opening Permits</h3>
+            <input type="checkbox" class="checkBox twoSupport" name="100 OPEN SIDEWALK TO INSTALL FOUNDATION" data-price = "185" <%= permits == "permit100"?'checked':'' %>>100 OPEN SIDEWALK TO INSTALL FOUNDATION<br>
+            <input type="checkbox" class="checkBox" name="102 MAJOR INSTALLATION - HIGH VOLTAGE" data-price = "185" <%= permits == "permit102"?'checked':'' %>>102 MAJOR INSTALLATION - HIGH VOLTAGE<br>
+            <input type="checkbox" class="checkBox" name="103" data-price = "185" <%= permits == "permit103"?'checked':'' %>>103 MAJOR INSTALLATION - GAS<br>
+            <input type="checkbox" class="checkBox" name="104" data-price = "185" <%= permits == "permit104"?'checked':'' %>>104 MAJOR INSTALLATION - STEAM<br>
+            <input type="checkbox" class="checkBox" name="105" data-price = "185" <%= permits == "permit105"?'checked':'' %>>105 MAJOR INSTALLATION - TELEPHONE<br>
+            <input type="checkbox" class="checkBox" name="106" data-price = "185" <%= permits == "permit106"?'checked':'' %>>106 TRANSFORMER VAULT - ON RDWAY<br>
+            <input type="checkbox" class="checkBox" name="107" data-price = "185" <%= permits == "permit107"?'checked':'' %>>107 TRANSFORMER VAULT - ON SIDEWALK<br>
+            <input type="checkbox" class="checkBox" name="108" data-price = "185" <%= permits == "permit108"?'checked':'' %>>108 INSTALLATION OF POLES<br>
+            <input type="checkbox" class="checkBox support" name="109" data-price = "185" <%= permits == "permit109"?'checked':'' %>>109 MAJOR INSTALLATION - WATER<br>
+            <input type="checkbox" class="checkBox support" name="110" data-price = "185" <%= permits == "permit110"?'checked':'' %>>110 MAJOR INSTALLATION - CABLE<br>
+            <input type="checkbox" class="checkBox support" name="111" data-price = "185" <%= permits == "permit111"?'checked':'' %>>111 MAJOR INSTALLATION - SEWER<br>
+            <input type="checkbox" class="checkBox support" name="113" data-price = "185" <%= permits == "permit113"?'checked':'' %>>113 REPAIR WATER<br>
+            <input type="checkbox" class="checkBox support" name="114" data-price = "185" <%= permits == "permit114"?'checked':'' %>>114 REPAIR SEWER<br>
+            <input type="checkbox" class="checkBox support" name="115" data-price = "185" <%= permits == "permit115"?'checked':'' %>>115 REPAIR WATER AND SEWER<br>
+            <input type="checkbox" class="checkBox twoSupport" name="116" data-price = "185" <%= permits == "permit116"?'checked':'' %>>116 FUEL OIL LINE (SIDEWALK ONLY)<br>
+            <input type="checkbox" class="checkBox twoSupport" name="117" data-price = "185" <%= permits == "permit117"?'checked':'' %>>117 VAULT CONSTRUCTION OR ALTERATION<br>
+            <input type="checkbox" class="checkBox twoSupport" name="118" data-price = "185" <%= permits == "permit118"?'checked':'' %>>118 RESET, REPAIR OR REPLACE CURB<br>
+            <input type="checkbox" class="checkBox twoSupport" name="119" data-price = "185" <%= permits == "permit119"?'checked':'' %>>119 PAVE STREET<br>
+            <input type="checkbox" class="checkBox" name="120" data-price = "185" <%= permits == "permit120"?'checked':'' %>>120 TREE PIT<br>
+            <input type="checkbox" class="checkBox" name="122" data-price = "185" <%= permits == "permit122"?'checked':'' %>>122 REPAIR GAS<br>
+            <input type="checkbox" class="checkBox" name="123" data-price = "185" <%= permits == "permit123"?'checked':'' %>>123 REPAIR STEAM<br>
+            <input type="checkbox" class="checkBox" name="124" data-price = "185" <%= permits == "permit124"?'checked':'' %>>124 REPAIR ELECTRIC OR COMMUNICATIONS<br>
+            <input type="checkbox" class="checkBox twoSupport" name="126" data-price = "185" <%= permits == "permit125"?'checked':'' %>>126 TEST PITS OR CORES OR BORINGS<br>
+            <input type="checkbox" class="checkBox support" name="127" data-price = "185" <%= permits == "permit126"?'checked':'' %>>127 CONDUIT CONSTRUCTION (CABLE, TELECOMMUNICATION) AND FRANCHISE<br>
+            <input type="checkbox" class="checkBox" name="128" data-price = "185" <%= permits == "permit128"?'checked':'' %>>128 ERECT CANOPY<br>
+            <input type="checkbox" class="checkBox support" name="129" data-price = "185" <%= permits == "permit129"?'checked':'' %>>129 INSTALL STREET FURNITURE<br>
+            <input type="checkbox" class="checkBox support" name="130" data-price = "185" <%= permits == "permit130"?'checked':'' %>>130 LAND FILL<br>
+            <input type="checkbox" class="checkBox twoSupport" name="131" data-price = "185" <%= permits == "permit131"?'checked':'' %>>131 PRIVATE SEWER<br>
+            <input type="checkbox" class="checkBox support" name="132" data-price = "185" <%= permits == "permit132"?'checked':'' %>>132 INSTALL FENCE<br>
+            <input type="checkbox" class="checkBox support" name="133" data-price = "185" <%= permits == "permit133"?'checked':'' %>>133 INSTALL TRAFFIC SIGNALS<br>
+            <input type="checkbox" class="checkBox support" name="138" data-price = "185" <%= permits == "permit138"?'checked':'' %>>138 INSTALLATION OF FIRE ALARM<br>
+            <input type="checkbox" class="checkBox support" name="139" data-price = "185" <%= permits == "permit139"?'checked':'' %>>139 INSTALLATION OF BUS SHELTER<br>
+            <input type="checkbox" class="checkBox support" name="151" data-price = "185" <%= permits == "permit151"?'checked':'' %>>151 PUBLIC TELEPHONES
+            </div>
+            <div id = "building">
+            <h3>Building Operation Permits</h3>
+            <input type="checkbox" class="checkBox" name="201" data-price = "100" <%= permits == "permit201"?'checked':'' %>>201 PLACE MATERIAL ON ST<br>
+            <input type="checkbox" class="checkBox" name="202" data-price = "100" <%= permits == "permit202"?'checked':'' %>>202 CROSSING SIDEWALK<br>
+            <input type="checkbox" class="checkBox" name="203" data-price = "100" <%= permits == "permit203"?'checked':'' %>>203 CRANE OR SHOVEL ON STREET<br>
+            <input type="checkbox" class="checkBox" name="204" data-price = "100" <%= permits == "permit204"?'checked':'' %>>204 PLACE EQUIP. OTHER THAN CRANE OR SHOVEL<br>
+            <input type="checkbox" class="checkBox" name="205" data-price = "100" <%= permits == "permit205"?'checked':'' %>>205 PLACE SHANTY OR TRAILER ON STREET<br>
+            <input type="checkbox" class="checkBox" name="207" data-price = "100" <%= permits == "permit207"?'checked':'' %>>207 FRANCHISE INSTALLATION (OVERHEAD STRUCTURE)<br>
+            <input type="checkbox" class="checkBox" name="208" data-price = "100" <%= permits == "permit208"?'checked':'' %>>208 TEMPORARY PEDESTRIAN WALK<br>
+            <input type="checkbox" class="checkBox" name="210" data-price = "100" <%= permits == "permit210"?'checked':'' %>>210 DECORATIVE STREET LIGHTS<br>
+            <input type="checkbox" class="checkBox" name="211" data-price = "100" <%= permits == "permit211"?'checked':'' %>>211 OCCUPANCY OF ROADWAY AS STIPULATED<br>
+            <input type="checkbox" class="checkBox" name="214" data-price = "100" <%= permits == "permit214"?'checked':'' %>>214 PLACE CONTAINER ON STREET<br>
+            <input type="checkbox" class="checkBox" name="215" data-price = "100" <%= permits == "permit215"?'checked':'' %>>215 OCCUPANCY OF SIDEWALK AS STIPULATED<br>
+            <input type="checkbox" class="checkBox" name="216" data-price = "100" <%= permits == "permit221"?'checked':'' %>>221 SIGNS &amp; PAVEMENT MARKINGS
+            </div>
+            <div id = "sidewalk">
+            <h3>Sidewalk Permits</h3>
+            <input type="checkbox" class="checkBox" name="401" data-price = "120" <%= permits == "permit401"?'checked':'' %>>401 REPAIR SIDEWALK<br>
+            <input type="checkbox" class="checkBox" name="402" data-price = "120" <%= permits == "permit402"?'checked':'' %>>402 CONSTRUCT NEW SIDEWALK<br>
+            <input type="checkbox" class="checkBox" name="403" data-price = "120" <%= permits == "permit403"?'checked':'' %>>403 REPLACE SIDEWALK<br>
+            <input type="checkbox" class="checkBox" name="405" data-price = "120" <%= permits == "permit405"?'checked':'' %>>405 NEW SIDEWALK , BUILDERS PAVEMENT (BPP)<br>
+            <input type="checkbox" class="checkBox" name="500" data-price = "120" <%= permits == "permit500"?'checked':'' %>>500 VAULT LICENSE
+            </div>	
+            </div><!-- End Permit Div -->
+        	<div class="span3">
+                    <div class="well">
+                        <p><img id="picture" width="180" src="<%= picture === null ? 'pics/generic.jpg' : 'pics/' + picture %>"/></p>
+
+                        <p>Drag Necessary Files to This Area!</p>
+                    </div>
+                </div>
+        </div><!-- End 2nd Row -->
+	<div class="row">
+	<div class = "offset5">
+    <div class = "alert">
+    <div id ="errors"></div>
+    </div>
+	<a id ="submitApp" class="btn btn-primary save">
+        <i class="icon-upload icon-white"></i>
+        <span>Submit Application</span>	</a>
+	</div>
+	</div>
+        </div><!-- End Main Content-->
